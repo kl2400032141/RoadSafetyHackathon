@@ -170,12 +170,7 @@ export default function GoogleMapContainer({
           {children}
         </Map>
 
-        {locationStatus === 'denied' && (
-          <div className="absolute top-3 left-3 bg-amber-50 border border-amber-200 text-[#b45309] text-[10px] font-bold px-2 py-1 rounded-md shadow-3xs flex items-center gap-1 pointer-events-none select-none">
-            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-            <span>Using default location (Location Access Denied)</span>
-          </div>
-        )}
+        
       </div>
     </APIProvider>
   );
