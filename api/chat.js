@@ -1,8 +1,10 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(
+  process.env.GEMINI_API_KEY
+);
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   try {
     if (req.method !== "POST") {
       return res.status(405).json({
@@ -28,55 +30,32 @@ module.exports = async (req, res) => {
 
     if (language === "hi") {
       langInstruction =
-        "Hindi (हिंदी). Please write your response in Hindi language script.";
+        "Hindi (हिंदी). Please write your response in Hindi.";
     } else if (language === "te") {
       langInstruction =
-        "Telugu (తెలుగు). Please write your response in Telugu language script.";
+        "Telugu (తెలుగు). Please write your response in Telugu.";
     }
 
-    const prompt = `
+    const result = await model.generateContent(`
 You are RoadLens AI.
 
-You are an intelligent assistant for a road transparency platform.
+Answer the user's question in ${langInstruction}.
 
-You help users understand:
-- Road information
-- Contractors
-- Budget allocation
-- Budget spending
-- Complaint reporting
-- Road maintenance
-- Website navigation
-
-CRITICAL LANGUAGE INSTRUCTION:
-- You must write your entire response ONLY in the language: ${langInstruction}
-- Format properly and keep the tone professional and friendly.
-
-USER QUESTION:
+Question:
 ${message}
-
-Instructions:
-- Answer clearly.
-- Be concise.
-- Be citizen friendly.
-- If information is unavailable, say so honestly.
-`;
-
-    const result = await model.generateContent(prompt);
-
-    const answer = result.response.text();
+`);
 
     return res.status(200).json({
       success: true,
-      answer,
+      answer: result.response.text(),
     });
+
   } catch (error) {
-    console.error("CHAT ERROR:", error);
+    console.error(error);
 
     return res.status(500).json({
       success: false,
-      answer:
-        "Sorry, I couldn't process your request right now.",
+      answer: error.message,
     });
   }
-};
+}
