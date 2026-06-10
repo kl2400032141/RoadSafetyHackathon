@@ -11,42 +11,72 @@ module.exports = async (req, res) => {
       });
     }
 
-    const { message } = req.body;
+    const { message, language } = req.body;
+
+    if (!message) {
+      return res.status(400).json({
+        success: false,
+        answer: "Message is required",
+      });
+    }
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-flash",
     });
+
+    let langInstruction = "English";
+
+    if (language === "hi") {
+      langInstruction =
+        "Hindi (हिंदी). Please write your response in Hindi language script.";
+    } else if (language === "te") {
+      langInstruction =
+        "Telugu (తెలుగు). Please write your response in Telugu language script.";
+    }
 
     const prompt = `
 You are RoadLens AI.
+
+You are an intelligent assistant for a road transparency platform.
 
 You help users understand:
 - Road information
 - Contractors
 - Budget allocation
+- Budget spending
 - Complaint reporting
 - Road maintenance
 - Website navigation
 
-User Question:
+CRITICAL LANGUAGE INSTRUCTION:
+- You must write your entire response ONLY in the language: ${langInstruction}
+- Format properly and keep the tone professional and friendly.
+
+USER QUESTION:
 ${message}
 
-Answer clearly and concisely.
-Return plain text only.
+Instructions:
+- Answer clearly.
+- Be concise.
+- Be citizen friendly.
+- If information is unavailable, say so honestly.
 `;
 
     const result = await model.generateContent(prompt);
 
-    res.status(200).json({
+    const answer = result.response.text();
+
+    return res.status(200).json({
       success: true,
-      answer: result.response.text(),
+      answer,
     });
   } catch (error) {
-    console.error(error);
+    console.error("CHAT ERROR:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      answer: "AI service temporarily unavailable.",
+      answer:
+        "Sorry, I couldn't process your request right now.",
     });
   }
 };
