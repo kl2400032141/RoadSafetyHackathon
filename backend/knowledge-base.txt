@@ -1,0 +1,16 @@
+RoadLens AI is a road transparency platform.
+
+Dashboard:
+Shows nearby roads, budgets, contractors and reports.
+
+Search Road Details:
+Shows road information, budget allocated, budget spent and contractor details.
+
+Report Issues:
+Allows users to report potholes, damaged roads and waterlogging.
+
+Road Map:
+Displays roads and nearby infrastructure.
+
+Complaint Routing:
+Complaints are automatically routed to the correct authority.

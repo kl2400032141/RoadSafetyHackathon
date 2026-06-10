@@ -1,0 +1,44 @@
+[
+  {
+    "roadName": "National Highway 48 (NH-48 Bypass)",
+    "contractor": "Infratech Projects Ltd.",
+    "budgetAllocated": "₹14.5 Crore",
+    "budgetSpent": "₹12.2 Crore"
+  },
+  {
+    "roadName": "State Highway 12 (SH-12 Main)",
+    "contractor": "Apex Infrastructure & Sons",
+    "budgetAllocated": "₹8.2 Crore",
+    "budgetSpent": "₹7.95 Crore"
+  },
+  {
+    "roadName": "Outer Ring Road (ORR) Service Lane",
+    "contractor": "Navdeep Buildcon Pvt. Ltd.",
+    "budgetAllocated": "₹5.4 Crore",
+    "budgetSpent": "₹5.1 Crore"
+  },
+  {
+    "roadName": "M.G. Road (Central Market Segment)",
+    "contractor": "Vardhaman Civil Corp",
+    "budgetAllocated": "₹3.2 Crore",
+    "budgetSpent": "₹2.1 Crore"
+  },
+  {
+    "roadName": "Kasturba Marg",
+    "contractor": "Royal Builders & Engineering",
+    "budgetAllocated": "₹2.4 Crore",
+    "budgetSpent": "₹2.28 Crore"
+  },
+  {
+    "roadName": "Sarjapur Main Link Road",
+    "contractor": "Dynamic Infra Projects",
+    "budgetAllocated": "₹6.8 Crore",
+    "budgetSpent": "₹5.9 Crore"
+  },
+  {
+    "roadName": "Whitefield Inner Ring Bypass",
+    "contractor": "BTM Civic Dev Group",
+    "budgetAllocated": "₹1.8 Crore",
+    "budgetSpent": "₹0.45 Crore"
+  }
+]
